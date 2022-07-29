@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+10.times do |x|
+  Post.create(title: "Title #{x} from seeded post", body: "Body #{x} from seeded posts")
+end
