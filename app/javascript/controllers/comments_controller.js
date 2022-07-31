@@ -1,19 +1,41 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  initialize() {}
+  initialize() {
+  }
 
-  connect() {}
+  connect() {
+  }
 
   toggleForm(e) {
     e.preventDefault()
     e.stopPropagation()
     const formID = e.params['form']
     const commentBodyID = e.params['body']
-    const form = document.querySelector(`#${formID}`)
+    const editButtonID = e.params['edit']
+
+    const form = document.querySelector(`#${ formID }`)
+    const commentBody = document.querySelector(`#${ commentBodyID }`)
+    const editButton = document.querySelector(`#${ editButtonID }`)
+
     form.classList.toggle('d-none')
     form.classList.toggle('mt-5')
-    const commentBody = document.querySelector(`#${commentBodyID}`)
     commentBody.classList.toggle('d-none')
+    this.toggleEditButton(editButton)
+  }
+
+  toggleEditButton(editButton) {
+    if (editButton.innerText === 'Edit') {
+      editButton.innerText = 'Cancel'
+      this.toggleEditButtonClass(editButton)
+    } else {
+      editButton.innerText = 'Edit'
+      this.toggleEditButtonClass(editButton)
+    }
+  }
+
+  toggleEditButtonClass(editButton) {
+    editButton.classList.toggle('btn-secondary')
+    editButton.classList.toggle('btn-warning')
   }
 }
