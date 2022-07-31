@@ -18,6 +18,19 @@ class CommentsController < ApplicationController
   def destroy
     @comment = @post.comments.find(params[:id])
     @comment.destroy
+    redirect_to post_path(@post)
+  end
+
+  def update
+    @comment = @post.comments.find(params[:id])
+
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.html { redirect_to post_url(@post), notice: 'Comment has been edited' }
+      else
+        format.html { redirect_to post_url(@post), alert: "Couldn't edit the comment" }
+      end
+    end
   end
 
   private
