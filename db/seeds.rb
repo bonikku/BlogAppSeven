@@ -22,28 +22,25 @@ end
 
 # Benchmark
 
-posts = []
-comments = []
-
 elapsed = Benchmark.measure do
+  posts = []
+  user1 = User.first
+  user2 = User.second
   100.times do |x|
-    puts "Creating post #{x}"
+    puts "Creating post #{x + 1}"
     post = Post.new(title: "Title #{x + 1} from seeded post",
                     body: "Body #{x + 1} from seeded posts",
-                    user_id: User.first.id)
-    posts.push(post)
+                    user: user1)
 
     15.times do |y|
       puts "Creating comment #{y + 1} for post #{x + 1}"
-      comment = post.comments.create(body: "Comment number #{y + 1}",
-                                     user_id: User.second.id,
-                                     post_id: post.id)
-      comments.push(comment)
+      post.comments.build(body: "Comment number #{y + 1}",
+                          user: user2,
+                          post_id: post.id)
     end
+    posts.push(post)
   end
+  Post.import(posts, recursive: true)
 end
-
-Post.import(posts)
-Comment.import(posts)
 
 puts "It took #{elapsed.real} seconds to create 100 posts with 15 comments each"

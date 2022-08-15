@@ -28,7 +28,7 @@
   </div>
   <div class='row mt-1'>
     <strong><%= pluralize(@post.comments.count, "Comment") %>:</strong>
-    <% @post.comments.includes(:rich_text_body, :user).each do |comment| %>
+    <% @post.comments.each do |comment| %>
       <div class='row mt-1'>
         <%= comment.user.name %>
         <%= comment.body %>

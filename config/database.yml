@@ -83,4 +83,4 @@ production:
   <<: *default
   database: blog_seven_production
   username: blog_seven
-  password: <%= ENV["BLOG_SEVEN_DATABASE_PASSWORD"] %>
+  password: <%= Rails.application.credentials.dig(:prod_db_username) %>
