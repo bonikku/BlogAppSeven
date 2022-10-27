@@ -54,6 +54,8 @@ gem "image_processing", "~> 1.2"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'rubocop'
+  gem 'rubocop'
 end
 
 group :development do
@@ -74,6 +76,7 @@ group :test do
   gem "webdrivers"
 end
 
+# Added gems
 gem "noticed", "~> 1.5"
 
 gem "ransack", "~> 3.2"
@@ -83,3 +86,5 @@ gem "friendly_id", "~> 5.4"
 gem "bullet", "~> 7.0"
 
 gem "activerecord-import", "~> 1.4"
+
+gem "wicked", "~> 1.4"

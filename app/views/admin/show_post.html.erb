@@ -30,7 +30,7 @@
     <strong><%= pluralize(@post.comments.count, "Comment") %>:</strong>
     <% @post.comments.each do |comment| %>
       <div class='row mt-1'>
-        <%= comment.user.name %>
+        <%= comment.user.full_name %>
         <%= comment.body %>
       </div>
     <% end %>
